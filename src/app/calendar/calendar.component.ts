@@ -10,13 +10,27 @@ import { HolidayapiService } from '../services/holidayapi.service'
 export class CalendarComponent implements OnInit {
   public title: string;
   public testService: string;
+  public holidays: any;
 
   constructor(private _apiService: HolidayapiService) { 
     this.title = "";
     this.testService = _apiService.getTestFromService();
+    this.setHolidays();
   }
 
   ngOnInit() {
   }
 
+  setHolidays() {
+		this._apiService.getHolidays('US', '2016', '09').subscribe(
+			result => {
+        this.holidays = result;
+        console.log(this.holidays);	
+			},
+			error => {
+				var errorMessage = <any>error;
+				console.log(errorMessage);
+			}
+		);
+	}
 }

@@ -33,6 +33,9 @@ export class AppComponent {
     
     this.numberOfMonths = this.calculateNumberOfMonths();
     this.days = new Array(this.numberOfMonths);
+
+    this.buildDays();
+    console.log(this.days);
   }  
 
   calculateNumberOfMonths():number {
@@ -62,8 +65,8 @@ export class AppComponent {
 
   getDay(refDate:Date, inc:number) {
     let day:Date = new Date(refDate.getFullYear(), refDate.getMonth(), refDate.getDate());
-    day.setDate(this.endDate.getDate() + inc);
-    day = new Date(this.endDate.getFullYear(), this.endDate.getMonth(), this.endDate.getDate());
+    day.setDate(day.getDate() + inc);
+    day = new Date(day.getFullYear(), day.getMonth(), day.getDate());
     let dayModel: DayModel = new DayModel(day, false);
     return dayModel;
   }

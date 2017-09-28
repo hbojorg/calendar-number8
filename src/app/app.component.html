@@ -39,13 +39,19 @@
   </form>
 </div>
 
-
 <hr>
-
-<calendar-number8></calendar-number8>
-
 <br>
 StartDate: {{_startDate | date: 'shortDate'}}
 <br>
 EndDate: {{_endDate | date: 'shortDate'}}
+<br>
+<div *ngIf="_endDate">
+    <h3>Calendar generated</h3>
+    <div *ngFor="let _day of days; let i = index">
+        <calendar-number8
+            [input1]="_day"        
+            [input2]="countryCode" 
+        ></calendar-number8>
+    </div>    
+</div>
 

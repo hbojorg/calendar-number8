@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HolidayapiService } from '../services/holidayapi.service'
+import { DayModel } from '../calendar/day.model';
 
 @Component({
   selector: 'calendar-number8',
@@ -11,6 +12,9 @@ export class CalendarComponent implements OnInit {
   public title: string;
   public testService: string;
   public holidays: any;
+
+  @Input('input1') days:Array<DayModel>;
+  @Input('input2') countryCode:string;
 
   constructor(private _apiService: HolidayapiService) { 
     this.title = "";

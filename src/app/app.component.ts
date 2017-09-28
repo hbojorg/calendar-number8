@@ -19,13 +19,11 @@ export class AppComponent {
   private _startDate: Date;
 
   constructor() {
-    this.patternDate = /(\d{2})[/](\d{2})[/](\d{4})/;
-    this.startDate = "15/08/2017";
-    this.numberOfDays = "300";
-    this.setEndDate();
+    this.patternDate = /(\d{2})[- /.](\d{2})[- /.](\d{4})/;  
+    //this.onSubmit();
   }
 
-  setEndDate() {
+  onSubmit() {
     let startDateArray = this.patternDate.exec(this.startDate);
     this._startDate = new Date(+startDateArray[3], (+startDateArray[2]-1), +startDateArray[1]);
     this._endDate = new Date(this._startDate.getFullYear(), this._startDate.getMonth(), this._startDate.getDate());

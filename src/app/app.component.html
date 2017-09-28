@@ -5,6 +5,39 @@
         Welcome to {{title}}!
     </h1>
 </div>
+<hr>
+
+<div>
+  <form #formCalendar="ngForm" (ngSubmit)="onSubmit();">
+    <p>
+        <label for="startDateId">Start Date: </label>
+        <input id="startDateId" type="text" name="startDateInput" #startDateInput="ngModel" [(ngModel)]="startDate" 
+         required pattern="^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$" placeholder="18/08/2014">
+        <span *ngIf="startDateInput.touched && !startDateInput.valid">
+            The date is incorrect, try again!! e.g. 18/08/2014
+        </span> 
+    </p>
+    <p>
+        <label for="NumberOfdaysId">Number of days: </label>
+        <input id="NumberOfdaysId" type="text" name="numberOfDaysInput" #numberOfDaysInput="ngModel" [(ngModel)]="numberOfDays"
+         required pattern="\d+" placeholder="7">
+        <span *ngIf="numberOfDaysInput.touched && !numberOfDaysInput.valid">
+            The number Of Days is incorrect, try again!! 
+        </span>
+    </p>
+    <p>
+        <label for="CountryCodeId">Country code: </label>
+        <input id="CountryCodeId" type="text" name="countryCodeInput" #countryCodeInput="ngModel" [(ngModel)]="countryCode"
+         required pattern="[A-Za-z]{2}" placeholder="US">
+        <span *ngIf="countryCodeInput.touched && !countryCodeInput.valid">
+            The country code is incorrect, try again!!
+        </span>
+    </p>
+    <p>        
+        <input type="submit" value="Generate calendar" [disabled]="!formCalendar.form.valid">
+    </p>
+  </form>
+</div>
 
 
 <hr>
@@ -12,7 +45,7 @@
 <calendar-number8></calendar-number8>
 
 <br>
-StartDate: {{startDate}}
+StartDate: {{_startDate | date: 'shortDate'}}
 <br>
 EndDate: {{_endDate | date: 'shortDate'}}
 

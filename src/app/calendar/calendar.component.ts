@@ -12,6 +12,7 @@ export class CalendarComponent implements OnInit {
   public title: string;
   public testService: string;
   public holidays: any;
+  public name: string;
 
   @Input('input1') days:Array<DayModel>;
   @Input('input2') countryCode:string;
@@ -36,5 +37,9 @@ export class CalendarComponent implements OnInit {
 				console.log(errorMessage);
 			}
 		);
-	}
+  }
+  
+  getName() {
+    return this.name;
+  }
 }
